@@ -1,24 +1,23 @@
 # Template file for 'musl'
 pkgname=musl
-version=1.2.6
-revision=2
+version=1.1.24
+revision=12
 archs="*-musl"
 bootstrap=yes
 build_style=gnu-configure
 configure_args="--prefix=/usr --disable-gcc-wrapper"
-short_desc="Musl C library"
-maintainer="Orphaned <orphan@voidlinux.org>"
+short_desc="Musl C library - version 1.1"
+maintainer="Enno Boland <gottox@voidlinux.org>"
 license="MIT"
 homepage="https://musl.libc.org/"
-changelog="https://git.musl-libc.org/cgit/musl/plain/WHATSNEW"
 distfiles="https://musl.libc.org/releases/musl-${version}.tar.gz"
-checksum=d585fd3b613c66151fc3249e8ed44f77020cb5e6c1e635a616d3f9f82460512a
+checksum=1370c9a812b2cf2a7d92802510cca0058cc37e66a7bedd70051f0a34015022a3
 
 nostrip_files="libc.so"
 shlib_provides="libc.so"
 
-if [ "$XBPS_TARGET_WORDSIZE" -eq 32 ]; then
-	broken="use musl1.1"
+if [ "$XBPS_TARGET_WORDSIZE" -ne 32 ]; then
+	broken="use musl"
 fi
 
 post_build() {
